@@ -798,3 +798,264 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
+.booking-toolbar {
+  grid-template-columns: minmax(260px, 1fr) minmax(150px, 220px);
+}
+
+.inline-select {
+  min-width: 156px;
+  min-height: 36px;
+  padding: 6px 9px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: #fff;
+  text-transform: capitalize;
+}
+
+@media (max-width: 720px) {
+  .booking-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-grid {
+  align-items: stretch;
+}
+
+.dashboard-stats-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.chart-card {
+  min-height: 390px;
+}
+
+.chart-placeholder {
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed #c8d2df;
+  border-radius: 8px;
+  color: var(--muted);
+  background: var(--surface-soft);
+  text-align: center;
+}
+
+.recharts-default-tooltip {
+  border: 1px solid var(--line) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12) !important;
+}
+
+@media (max-width: 1280px) {
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .dashboard-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: #344054;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.theme-toggle:hover {
+  background: var(--surface-soft);
+}
+
+:root[data-theme='dark'] .auth-page {
+  background:
+    linear-gradient(135deg, rgba(96, 165, 250, 0.14), transparent 35%),
+    linear-gradient(315deg, rgba(251, 146, 60, 0.14), transparent 30%),
+    var(--bg);
+}
+
+:root[data-theme='dark'] .auth-panel,
+:root[data-theme='dark'] .card,
+:root[data-theme='dark'] .stat-card,
+:root[data-theme='dark'] .user-chip {
+  border-color: var(--line);
+  background: var(--surface);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme='dark'] .dashboard-layout {
+  background: var(--bg);
+}
+
+:root[data-theme='dark'] .topbar {
+  border-bottom-color: var(--line);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+:root[data-theme='dark'] .hero-card {
+  background:
+    linear-gradient(135deg, rgba(96, 165, 250, 0.16), transparent 42%),
+    linear-gradient(315deg, rgba(251, 146, 60, 0.16), transparent 38%),
+    var(--surface);
+}
+
+:root[data-theme='dark'] input,
+:root[data-theme='dark'] select,
+:root[data-theme='dark'] textarea,
+:root[data-theme='dark'] .search-field,
+:root[data-theme='dark'] .inline-select {
+  border-color: var(--line);
+  color: var(--text);
+  background: #0f172a;
+}
+
+:root[data-theme='dark'] input::placeholder,
+:root[data-theme='dark'] textarea::placeholder {
+  color: #7f8da3;
+}
+
+:root[data-theme='dark'] .auth-form label,
+:root[data-theme='dark'] .stacked-form label,
+:root[data-theme='dark'] .profile-list dt,
+:root[data-theme='dark'] .timeline-list strong,
+:root[data-theme='dark'] .detail-list dt {
+  color: #d9e2f1;
+}
+
+:root[data-theme='dark'] .ghost-button,
+:root[data-theme='dark'] .icon-button,
+:root[data-theme='dark'] .theme-toggle {
+  border-color: var(--line);
+  color: var(--text);
+  background: #111827;
+}
+
+:root[data-theme='dark'] .ghost-button:hover,
+:root[data-theme='dark'] .icon-button:hover,
+:root[data-theme='dark'] .theme-toggle:hover {
+  background: #1f2937;
+}
+
+:root[data-theme='dark'] .primary-button {
+  color: #06111f;
+}
+
+:root[data-theme='dark'] .table-scroll,
+:root[data-theme='dark'] .profile-list div,
+:root[data-theme='dark'] .timeline-list div,
+:root[data-theme='dark'] .detail-list div,
+:root[data-theme='dark'] .placeholder-box,
+:root[data-theme='dark'] .empty-state,
+:root[data-theme='dark'] .chart-placeholder {
+  border-color: var(--line);
+  background: var(--surface-soft);
+}
+
+:root[data-theme='dark'] .data-table th {
+  color: #cbd5e1;
+  background: #111827;
+}
+
+:root[data-theme='dark'] .data-table td {
+  color: var(--text);
+  border-bottom-color: var(--line);
+}
+
+:root[data-theme='dark'] .table-description,
+:root[data-theme='dark'] .table-summary,
+:root[data-theme='dark'] .pagination,
+:root[data-theme='dark'] .profile-list dd,
+:root[data-theme='dark'] .timeline-list span,
+:root[data-theme='dark'] .muted,
+:root[data-theme='dark'] .section-heading p,
+:root[data-theme='dark'] .auth-switch {
+  color: var(--muted);
+}
+
+:root[data-theme='dark'] .stat-icon.blue {
+  color: #bfdbfe;
+  background: rgba(37, 99, 235, 0.24);
+}
+
+:root[data-theme='dark'] .stat-icon.orange {
+  color: #fed7aa;
+  background: rgba(249, 115, 22, 0.22);
+}
+
+:root[data-theme='dark'] .status-badge.active,
+:root[data-theme='dark'] .status-badge.completed,
+:root[data-theme='dark'] .status-badge.confirmed {
+  color: #bbf7d0;
+  background: rgba(22, 163, 74, 0.22);
+}
+
+:root[data-theme='dark'] .status-badge.inactive,
+:root[data-theme='dark'] .status-badge.cancelled {
+  color: #fecaca;
+  background: rgba(220, 38, 38, 0.22);
+}
+
+:root[data-theme='dark'] .status-badge.pending,
+:root[data-theme='dark'] .status-badge.in_progress {
+  color: #fed7aa;
+  background: rgba(249, 115, 22, 0.22);
+}
+
+:root[data-theme='dark'] .feedback,
+:root[data-theme='dark'] .form-alert {
+  border-color: rgba(251, 146, 60, 0.38);
+  color: #fed7aa;
+  background: rgba(249, 115, 22, 0.12);
+}
+
+:root[data-theme='dark'] .feedback.success,
+:root[data-theme='dark'] .form-alert.success {
+  border-color: rgba(74, 222, 128, 0.38);
+  color: #bbf7d0;
+  background: rgba(22, 163, 74, 0.14);
+}
+
+:root[data-theme='dark'] .feedback.error,
+:root[data-theme='dark'] .form-alert.error {
+  border-color: rgba(248, 113, 113, 0.38);
+  color: #fecaca;
+  background: rgba(220, 38, 38, 0.14);
+}
+
+:root[data-theme='dark'] .field-error,
+:root[data-theme='dark'] .table-actions button {
+  color: #fca5a5;
+}
+
+:root[data-theme='dark'] .recharts-cartesian-axis-tick-value {
+  fill: #a7b0c0;
+}
+
+:root[data-theme='dark'] .recharts-cartesian-grid line {
+  stroke: #2d3748;
+}
+
+:root[data-theme='dark'] .recharts-default-tooltip {
+  color: var(--text) !important;
+  background: #111827 !important;
+  border-color: var(--line) !important;
+}

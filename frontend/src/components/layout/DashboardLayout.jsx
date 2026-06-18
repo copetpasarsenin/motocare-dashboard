@@ -5,18 +5,22 @@ import {
   Gauge,
   LogOut,
   Menu,
+  Moon,
   PlusCircle,
+  Sun,
   UserCircle,
   Wrench,
   X,
 } from 'lucide-react'
 import { clearSession, getStoredUser } from '../../utils/auth'
+import { getStoredTheme, toggleTheme } from '../../utils/theme'
 
 const navItems = [
   { to: '/', label: 'Dashboard', icon: Gauge },
   { to: '/services', label: 'Services', icon: Wrench },
   { to: '/services/create', label: 'Create Service', icon: PlusCircle },
   { to: '/bookings', label: 'Bookings', icon: CalendarDays },
+  { to: '/bookings/create', label: 'Create Booking', icon: PlusCircle },
   { to: '/profile', label: 'Profile', icon: UserCircle },
 ]
 
@@ -25,6 +29,7 @@ const pageTitles = {
   '/services': 'Services List',
   '/services/create': 'Create Service',
   '/bookings': 'Bookings',
+  '/bookings/create': 'Create Booking',
   '/profile': 'Profile',
 }
 
@@ -66,13 +71,19 @@ function Sidebar({ open, onClose, onLogout }) {
 
 function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [theme, setTheme] = useState(getStoredTheme)
   const user = getStoredUser()
   const navigate = useNavigate()
   const location = useLocation()
+  const isDark = theme === 'dark'
 
   const handleLogout = () => {
     clearSession()
     navigate('/login', { replace: true })
+  }
+
+  const handleToggleTheme = () => {
+    setTheme((currentTheme) => toggleTheme(currentTheme))
   }
 
   return (
@@ -90,6 +101,10 @@ function DashboardLayout() {
             <h1>{pageTitles[location.pathname] || 'MotoCare'}</h1>
           </div>
           <div className="topbar-actions">
+            <button className="theme-toggle" type="button" onClick={handleToggleTheme} aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}>
+              {isDark ? <Sun size={17} /> : <Moon size={17} />}
+              <span>{isDark ? 'Light' : 'Dark'}</span>
+            </button>
             <div className="user-chip">
               <span>{user?.username || 'User'}</span>
               <small>{user?.role || 'guest'}</small>

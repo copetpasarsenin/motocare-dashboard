@@ -1,12 +1,14 @@
-import { Download, RefreshCw, Search, Trash2 } from 'lucide-react'
+import { Download, FileSpreadsheet, RefreshCw, Search, Trash2 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router'
 import EmptyState from '../components/ui/EmptyState'
 import StatusBadge from '../components/ui/StatusBadge'
 import { deleteService, getCategories, getServices } from '../services/services'
 import { buildServicesCsv, downloadCsv, formatCurrency, getCategoryName } from '../utils/csv'
+import { downloadServicesExcel } from '../utils/excel'
 
 const CSV_FILENAME = 'motocare_services.csv'
+const EXCEL_FILENAME = 'motocare_services.xlsx'
 
 function ServicesList() {
   const [services, setServices] = useState([])
@@ -85,6 +87,23 @@ function ServicesList() {
     }
   }
 
+  const handleExportExcel = async () => {
+    setFeedback({ type: '', message: '' })
+
+    try {
+      const payload = await getServices(exportFilters)
+      if (payload.data.length === 0) {
+        setFeedback({ type: 'error', message: 'Tidak ada data layanan untuk diexport.' })
+        return
+      }
+
+      downloadServicesExcel(EXCEL_FILENAME, payload.data)
+      setFeedback({ type: 'success', message: `Berhasil export ${payload.data.length} layanan ke ${EXCEL_FILENAME}.` })
+    } catch (error) {
+      setFeedback({ type: 'error', message: error.message || 'Gagal menyiapkan export Excel' })
+    }
+  }
+
   const handleDelete = async (service) => {
     const confirmed = window.confirm(`Hapus layanan "${service.name}"? Data yang dihapus tidak bisa dikembalikan.`)
     if (!confirmed) return
@@ -110,13 +129,17 @@ function ServicesList() {
       <div className="section-heading row-heading">
         <div>
           <h3>Services List</h3>
-          <p>Daftar layanan servis dengan search, filter, sorting, pagination, dan export CSV.</p>
+          <p>Daftar layanan servis dengan search, filter, sorting, pagination, CSV, dan Excel export.</p>
         </div>
         <div className="button-row">
           <Link className="ghost-button" to="/services/create">Create</Link>
-          <button className="primary-button" type="button" onClick={handleExportCsv}>
+          <button className="ghost-button" type="button" onClick={handleExportCsv}>
             <Download size={17} />
             Export CSV
+          </button>
+          <button className="primary-button" type="button" onClick={handleExportExcel}>
+            <FileSpreadsheet size={17} />
+            Export Excel
           </button>
         </div>
       </div>
@@ -224,4 +247,3 @@ function ServicesList() {
 }
 
 export default ServicesList
-

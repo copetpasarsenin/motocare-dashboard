@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router'
 import DashboardLayout from '../components/layout/DashboardLayout'
+import BookingCreate from '../pages/BookingCreate'
 import BookingsList from '../pages/BookingsList'
 import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
@@ -25,6 +26,7 @@ function AppRoutes() {
           <Route path="services/:id" element={<ServiceDetail />} />
           <Route path="services/:id/edit" element={<ServiceEdit />} />
           <Route path="bookings" element={<BookingsList />} />
+          <Route path="bookings/create" element={<BookingCreate />} />
           <Route path="profile" element={<Profile />} />
         </Route>
       </Route>
